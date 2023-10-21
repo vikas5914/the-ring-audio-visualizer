@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ESSENTIAL -->
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <!-- GENERAL -->
+    <title>The Ring (Alpha) Three.js Audio Visualizer</title>
+    <meta name="title" content="The Ring (Alpha) Three.js Audio Visualizer" />
+    
+    <!-- GOOGLE -->
+    <meta name="rating" content="General" />
+    <meta name="robots" content="index,follow" />
+    
+</head>
+<body class="fixed h-screen">
+    <noscript class="text-center text-lg text-red-500">
+        Enable JavaScript to enjoy all the features of this app.
+    </noscript>
+    <main class="flex h-full bg-primary text-color">
+        <canvas id="canvas" class=""></canvas>
+    </main>
+    <script>
+               
+        window.audioArray = null
+        
+        window.wallpaperSettings = {
+            fps: 0
+        };
+        
+        var peakValue = 1;
+        
+        window.wallpaperPropertyListener = {
+            applyGeneralProperties: function(properties) {
+                if (properties.fps) {
+                    window.wallpaperSettings.fps = properties.fps;
+                }
+            },
+        };
+        
+        window.last = performance.now() / 1000
+        window.fpsThreshold = 0
+        
+        function wallpaperMediaPropertiesListener(event) {
+            // TODO: Handle the event
+        }
+        
+        function wallpaperMediaThumbnailListener(event) {
+            // TODO: Handle the event
+        }
+        
+        function wallpaperAudioListener(audioData) {
+            window.audioArray = audioData
+        }
+        
+        //window.wallpaperRegisterMediaPropertiesListener(wallpaperMediaPropertiesListener);
+        //window.wallpaperRegisterMediaThumbnailListener(wallpaperMediaThumbnailListener);
+        window.wallpaperRegisterAudioListener(wallpaperAudioListener);           
+        
+    </script>
+    <script type="module" src="src/js/index.js"></script>
+</body>
+</html>
